@@ -1692,12 +1692,14 @@ for (var i = 0; i < all_spc.length; i++)
     const urlParams = new URLSearchParams(queryString);
     setTimeout(() => {
       if (urlParams.get('hcti')) {
+        const index_to_input = {10:0,16:1,19:2,20:3,23:4,24:5,36:6,37:7,27:8,28:9}
         // debugger
         document.querySelectorAll("button#form-pagebreak-next_72")[0].click()
         document.querySelectorAll("button#form-pagebreak-next_41")[0].click()
         
         const selections = urlParams.get('results').split(',')
-        Object.keys(input_mapping).map((key, index) => {
+        Object.keys(input_mapping).map((key) => {
+          const index = index_to_input[key]
           scale_selections[key] = selections[index]
           document.querySelector(`div.circle#input_75_${input_mapping[key][0]}_${selections[index]}`).classList.add(input_mapping[key][1])
         })
