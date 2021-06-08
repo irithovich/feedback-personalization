@@ -2,7 +2,7 @@
 <script src="https://cdn.jotfor.ms/static/prototype.forms.js" type="text/javascript"></script>
 <script src="https://cdn.jotfor.ms/static/jotform.forms.js?3.3.25802" type="text/javascript"></script>
 <script src="https://js.jotform.com/vendor/postMessage.js?3.3.25802" type="text/javascript"></script>
-<script src="https://js.jotform.com/WidgetsServer.js?v=1623186002270" type="text/javascript"></script>
+<script src="https://js.jotform.com/WidgetsServer.js?v=1623187162821" type="text/javascript"></script>
 <script type="text/javascript">
 	JotForm.init(function(){
 if (window.JotForm && JotForm.accessible) $('input_87').setAttribute('tabindex',0);
@@ -30,165 +30,442 @@ JotForm.paymentExtrasOnTheFly([null,{"name":"feedbackPersonalization","qid":"1",
 <link type="text/css" rel="stylesheet" href="https://cdn.jotfor.ms/css/styles/payment/payment_feature.css?3.3.25802" />
 <style type="text/css" id="form-designer-style">
     /* Injected CSS Code */
-/*PREFERENCES STYLE*/
-    .form-all {
-      font-family: Inter, sans-serif;
-    }
-    .form-all .qq-upload-button,
-    .form-all .form-submit-button,
-    .form-all .form-submit-reset,
-    .form-all .form-submit-print {
-      font-family: Inter, sans-serif;
-    }
-    .form-all .form-pagebreak-back-container,
-    .form-all .form-pagebreak-next-container {
-      font-family: Inter, sans-serif;
-    }
-    .form-header-group {
-      font-family: Inter, sans-serif;
-    }
-    .form-label {
-      font-family: Inter, sans-serif;
-    }
-  
-    .form-label.form-label-auto {
-      
-    display: block;
-    float: none;
-    text-align: left;
-    width: 100%;
-  
-    }
-  
-    .form-line {
-      margin-top: 12px;
-      margin-bottom: 12px;
-    }
-  
-    .form-all {
-      max-width: 750px;
-      width: 100%;
-    }
-  
-    .form-label.form-label-left,
-    .form-label.form-label-right,
-    .form-label.form-label-left.form-label-auto,
-    .form-label.form-label-right.form-label-auto {
-      width: 250px;
-    }
-  
-    .form-all {
-      font-size: 10px
-    }
-    .form-all .qq-upload-button,
-    .form-all .qq-upload-button,
-    .form-all .form-submit-button,
-    .form-all .form-submit-reset,
-    .form-all .form-submit-print {
-      font-size: 10px
-    }
-    .form-all .form-pagebreak-back-container,
-    .form-all .form-pagebreak-next-container {
-      font-size: 10px
-    }
-  
-    .supernova .form-all, .form-all {
-      background-color: #fff;
-    }
-  
-    .form-all {
-      color: #4a4a4a;
-    }
-    .form-header-group .form-header {
-      color: #4a4a4a;
-    }
-    .form-header-group .form-subHeader {
-      color: #4a4a4a;
-    }
-    .form-label-top,
-    .form-label-left,
-    .form-label-right,
-    .form-html,
-    .form-checkbox-item label,
-    .form-radio-item label {
-      color: #4a4a4a;
-    }
-    .form-sub-label {
-      color: #646464;
-    }
-  
-    .supernova {
-      background-color: #ffffff;
-    }
-    .supernova body {
-      background: transparent;
-    }
-  
-    .form-textbox,
-    .form-textarea,
-    .form-dropdown,
-    .form-radio-other-input,
-    .form-checkbox-other-input,
-    .form-captcha input,
-    .form-spinner input {
-      background-color: #fff;
-    }
-  
-    .supernova {
-      background-image: none;
-    }
-    #stage {
-      background-image: none;
-    }
-  
-    .form-all {
-      background-image: none;
-    }
-  
-  .ie-8 .form-all:before { display: none; }
-  .ie-8 {
-    margin-top: auto;
-    margin-top: initial;
-  }
-  
-  /*PREFERENCES STYLE*//*__INSPECT_SEPERATOR__*/.form-pagebreak-next {
-  background-color : #05bbc9;
-  border-color: white;
+@import "https://fonts.googleapis.com/css?family=Inter:light,lightitalic,normal,italic,bold,bolditalic";
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
 }
+.form-all {
+  font-family: "Inter", sans-serif;
+}
+.main .jotform-form {
+  width: 100%;
+  padding: 0 3%;
+}
+.form-all {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 750px;
+}
+.form-line-active {
+  background-color: #ffffe0;
+}
+.form-all {
+  font-size: 10px;
+}
+li.form-line {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+.form-line {
+  padding: 12px 10px;
+}
+.form-section {
+  padding: 0px 38px;
+}
+.form-textbox,
+.form-textarea,
+.form-radio-other-input,
+.form-checkbox-other-input,
+.form-captcha input,
+.form-spinner input {
+  background-color: #ffffff;
+}
+.form-label {
+  font-family: "Inter", sans-serif;
+}
+.form-line-column {
+  width: calc(50% - 8px);
+}
+.form-checkbox-item label,
+.form-checkbox-item span,
+.form-radio-item label,
+.form-radio-item span {
+  color: #646464;
+}
+.form-radio-item,
+.form-checkbox-item {
+  padding-bottom: 0px !important;
+}
+.form-radio-item:last-child,
+.form-checkbox-item:last-child {
+  padding-bottom: 0;
+}
+.form-single-column .form-checkbox-item,
+.form-single-column .form-radio-item {
+  width: 100%;
+}
+.form-checkbox-item .editor-container div,
+.form-radio-item .editor-container div {
+  position: relative;
+}
+.form-checkbox-item .editor-container div:before,
+.form-radio-item .editor-container div:before {
+  display: inline-block;
+  vertical-align: middle;
+  left: 0;
+  width: 20px;
+  height: 20px;
+}
+.form-all .form-submit-button,
+.form-all .form-submit-print {
+  font-size: 10px;
+  font-weight: normal;
+  font-family: "Inter", sans-serif;
+}
+.form-all .form-submit-button {
+  min-width: 180px;
+}
+.form-all .form-submit-button.js-new-sacl-button,
+.form-all .form-submit-print {
+  min-width: 98px;
+}
+.form-all .form-pagebreak-back,
+.form-all .form-pagebreak-next {
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: normal;
+}
+.form-all .form-pagebreak-back,
+.form-all .form-pagebreak-next {
+  min-width: 128px;
+}
+li[data-type="control_image"] div {
+  text-align: left;
+}
+li[data-type="control_image"] img {
+  border: none;
+  border-width: 0px !important;
+  border-style: solid !important;
+  border-color: false !important;
+}
+.supernova {
+  height: 100%;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center top;
+  background-repeat: repeat;
+}
+.supernova {
+  background-image: none;
+}
+#stage {
+  background-image: none;
+}
+/* | */
+.form-all {
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center top;
+  background-repeat: repeat;
+}
+.form-header-group {
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center top;
+}
+.header-large h1.form-header {
+  font-size: 2em;
+}
+.header-large h2.form-header {
+  font-size: 1.5em;
+}
+.header-large h3.form-header {
+  font-size: 1.17em;
+}
+.header-large h1 + .form-subHeader {
+  font-size: 1em;
+}
+.header-large h2 + .form-subHeader {
+  font-size: .875em;
+}
+.header-large h3 + .form-subHeader {
+  font-size: .75em;
+}
+.header-default h1.form-header {
+  font-size: 2em;
+}
+.header-default h2.form-header {
+  font-size: 1.5em;
+}
+.header-default h3.form-header {
+  font-size: 1.17em;
+}
+.header-default h1 + .form-subHeader {
+  font-size: 1em;
+}
+.header-default h2 + .form-subHeader {
+  font-size: .875em;
+}
+.header-default h3 + .form-subHeader {
+  font-size: .75em;
+}
+.header-small h1.form-header {
+  font-size: 2em;
+}
+.header-small h2.form-header {
+  font-size: 1.5em;
+}
+.header-small h3.form-header {
+  font-size: 1.17em;
+}
+.header-small h1 + .form-subHeader {
+  font-size: 1em;
+}
+.header-small h2 + .form-subHeader {
+  font-size: .875em;
+}
+.header-small h3 + .form-subHeader {
+  font-size: .75em;
+}
+.form-header-group {
+  text-align: left;
+}
+.form-header-group {
+  font-family: "Inter", sans-serif;
+}
+div.form-header-group.header-large {
+  margin: 0px -38px;
+}
+div.form-header-group.header-large {
+  padding: 40px 52px;
+}
+.form-header-group .form-header,
+.form-header-group .form-subHeader {
+  color: 0;
+}
+.form-line-error {
+  overflow: hidden;
+  -webkit-transition-property: none;
+  -moz-transition-property: none;
+  -ms-transition-property: none;
+  -o-transition-property: none;
+  transition-property: none;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease;
+  -moz-transition-timing-function: ease;
+  -ms-transition-timing-function: ease;
+  -o-transition-timing-function: ease;
+  transition-timing-function: ease;
+  background-color: #fff4f4;
+}
+.form-line-error .form-error-message {
+  background-color: #f23a3c;
+  clear: both;
+  float: none;
+}
+.form-line-error .form-error-message .form-error-arrow {
+  border-bottom-color: #f23a3c;
+}
+.form-line-error input:not(#coupon-input),
+.form-line-error textarea,
+.form-line-error .form-validation-error {
+  border: 1px solid #f23a3c;
+  box-shadow: 0 0 3px #f23a3c;
+}
+.supernova {
+  background-color: #ffffff;
+}
+.supernova body {
+  background-color: transparent;
+}
+.supernova .form-all,
+.form-all {
+  background-color: #ffffff;
+}
+.form-textbox,
+.form-textarea,
+.form-radio-other-input,
+.form-checkbox-other-input,
+.form-captcha input,
+.form-spinner input {
+  background-color: #ffffff;
+}
+.form-matrix-table tr {
+  border-color: #e6e6e6;
+}
+.form-matrix-table tr:nth-child(2n) {
+  background-color: #f2f2f2;
+}
+.form-all {
+  color: #4a4a4a;
+}
+.form-label-top,
+.form-label-left,
+.form-label-right,
+.form-html {
+  color: #4a4a4a;
+}
+.form-line-error {
+  overflow: hidden;
+  -webkit-transition-property: none;
+  -moz-transition-property: none;
+  -ms-transition-property: none;
+  -o-transition-property: none;
+  transition-property: none;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease;
+  -moz-transition-timing-function: ease;
+  -ms-transition-timing-function: ease;
+  -o-transition-timing-function: ease;
+  transition-timing-function: ease;
+  background-color: #fff4f4;
+}
+.form-header-group .form-header,
+.form-header-group .form-subHeader {
+  color: 0;
+}
+
+/*__INSPECT_SEPERATOR__*/
+.form-pagebreak-next {
+    background-color : #05bbc9;
+    border-color : white;
+    font-size : 12px;
+}
+
 .form-pagebreak-next:hover {
-  background-color : #028c97;
-  border-color: white;
+    background-color : #028c97;
+    border-color : white;
+    font-size : 12px;
 }
+
 .form-submit-button {
-  background-color : #05bbc9;
-  border-color: white;
+    background-color : #05bbc9;
+    border-color : white;
+    font-size : 12px;
 }
+
 .form-submit-button:hover {
-  background-color : #028c97;
-  border-color: white;
+    background-color : #028c97;
+    border-color : white;
+    font-size : 12px;
 }
+
 .form-checkbox:checked+label:before, .form-checkbox:checked+span:before, .form-checkbox:checked+span label:before {
-  border-color: #05bbc9;
-  background-color: #05bbc9;
+    border-color : #05bbc9;
+    background-color : #05bbc9;
 }
+
 .rating-item input:hover+label {
-  background-color: #05bcc957;
-  color: #fff;
-  border-color: #05bcc957;
+    background-color : #05bcc957;
+    color : #fff;
+    border-color : #05bcc957;
 }
+
 .rating-item input:checked+label {
-  background-color: #05bbc9;
-  color: #fff;
-  border-color: #05bbc9;
+    background-color : #05bbc9;
+    color : #fff;
+    border-color : #05bbc9;
 }
+
 .form-label.form-label-auto {
-        
-      display: block;
-      float: none;
-      text-align: left;
-      width: 100%;
-    
-      }
+    display : block;
+    float : none;
+    text-align : left;
+    width : 100%;
+}
+
+.form-line {
+    font-size : 12px;
+}
+
+.form-checkbox-item label {
+
+}
+
+#label_input_101_1 {
+
+}
+
+#id_101 {
+    font-size : 12px;
+}
+
+.form-all {
+
+}
+
+#id_104 {
+    font-size : 12px;
+}
+
+.form-pagebreak-back.jf-form-buttons {
+    font-size : 12px;
+    font-size : 12px;
+}
+
+#form-pagebreak-back_72 {
+    font-size : 12px;
+}
+
+#form-pagebreak-back_132 {
+    font-size : 12px;
+}
+
+.form-pagebreak-next-container {
+
+}
+
+.form-collapse-mid {
+    font-size : 12px;
+}
+
+.rating-item-title.for-from {
+    font-size : 10px;
+}
+
+.rating-item-title for-to label {
+
+}
+
+.rating-item label {
+    font-size : 7px;
+    margin : 0px 0px 0px 0px;
+}
+
+.rating-item-title for-from label {
+
+}
+
+.rating-item-title for-from hoverSticky label {
+
+}
+
+.rating-item-group {
+    width : 750px;
+}
+
+#cid_23 div.rating-item-group {
+    padding : 0px 0px 0px 0px;
+    margin : 0px 0px 0px 0px;
+    width : 750px;
+}
+
+.rating-item {
+    padding : 0px 0px 0px 0px;
+}
+
+.form-collapse-table {
+
+}
+
+.form-sub-label-container {
+    margin : 0px 0px 0px 0px;
+    padding : 0px 0px 0px 0px;
+}
+
+
     /* Injected CSS Code */
 </style>
 
@@ -273,7 +550,7 @@ JotForm.paymentExtrasOnTheFly([null,{"name":"feedbackPersonalization","qid":"1",
     </ul>
     <ul class="form-section page-section" style="display:none;">
       <li class="form-line" data-type="control_textbox" id="id_87">
-        <label class="form-label form-label-top form-label-auto" id="label_87" for="input_87"> Think of one of your employees and write his/her first name or a nickname </label>
+        <label class="form-label form-label-top" id="label_87" for="input_87"> Think of one of your employees and write his/her first name or a nickname </label>
         <div id="cid_87" class="form-input-wide" data-layout="half">
           <input type="text" id="input_87" name="q87_thinkOf" data-type="input-textbox" class="form-textbox" style="width:310px" size="310" value="" data-component="textbox" aria-labelledby="label_87" />
         </div>
@@ -1570,7 +1847,7 @@ JotForm.paymentExtrasOnTheFly([null,{"name":"feedbackPersonalization","qid":"1",
         </div>
       </li>
       <li class="form-line" data-type="control_checkbox" id="id_101">
-        <label class="form-label form-label-top form-label-auto" id="label_101" for="input_101"> Self Confidence </label>
+        <label class="form-label form-label-top" id="label_101" for="input_101"> Self Confidence </label>
         <div id="cid_101" class="form-input-wide" data-layout="full">
           <div class="form-single-column" role="group" aria-labelledby="label_101" data-component="checkbox">
             <span class="form-checkbox-item" style="clear:left">
