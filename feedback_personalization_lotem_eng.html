@@ -2,7 +2,7 @@
 <script src="https://cdn02.jotfor.ms/static/jotform.forms.js?3.3.27141" type="text/javascript"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/punycode/1.4.1/punycode.js"></script>
 <script src="https://js.jotform.com/vendor/postMessage.js?3.3.27141" type="text/javascript"></script>
-<script src="https://js.jotform.com/WidgetsServer.js?v=1629240440457" type="text/javascript"></script>
+<script src="https://js.jotform.com/WidgetsServer.js?v=1629243597592" type="text/javascript"></script>
 <script type="text/javascript">	JotForm.newDefaultTheme = true;
 	JotForm.extendsNewTheme = false;
 	JotForm.newPaymentUIForNewCreatedForms = false;
@@ -1822,9 +1822,9 @@ li[data-type=control_text] {
           </table>
         </div>
       </li>
-      <li class="form-line" data-type="control_textbox" id="id_106">
+      <li class="form-line always-hidden" data-type="control_textbox" id="id_106">
         <label class="form-label form-label-top form-label-auto" id="label_106" for="input_106"> base64 </label>
-        <div id="cid_106" class="form-input-wide" data-layout="half">
+        <div id="cid_106" class="form-input-wide always-hidden" data-layout="half">
           <input type="text" id="input_106" name="q106_base64" data-type="input-textbox" class="form-textbox" style="width:310px" size="310" value="" data-component="textbox" aria-labelledby="label_106" />
         </div>
       </li>
@@ -2215,3 +2215,192 @@ for (var i = 0; i < all_spc.length; i++)
 </form>
 <script src="https://cdn.jotfor.ms//js/vendor/smoothscroll.min.js?v=3.3.27141"></script>
 <script src="https://cdn.jotfor.ms//js/errorNavigation.js?v=3.3.27141"></script>
+<script>
+  (function() {
+
+    const updateGapValues = () => {
+      let gapf = (i, j, k) => {
+        if (i in scale_selections && j in scale_selections) {
+          const gap = Math.abs(scale_selections[i] - scale_selections[j])
+          let e = document.getElementById(`input_75_${k}_12`)
+          e.innerText = gap
+          if (gap <= 3) {
+            e.classList.add("green")
+          } else if (gap >= 7) {
+            e.classList.add("red")
+          } else {
+            e.classList.add("yellow")
+          }
+        }
+      }
+      gapf('10', '16', 0)
+      gapf('19', '20', 1)
+      gapf('23', '24', 2)
+      gapf('36', '37', 3)
+      gapf('27', '28', 4)
+    }
+
+    document.querySelector('.form-matrix-headers.form-matrix-column-headers.form-matrix-column_0').innerHTML = '';
+    document.querySelector('.form-matrix-headers.form-matrix-column-headers.form-matrix-column_11').innerHTML = '';
+
+    const scale_mappings_en = {
+      0: ['Low', 'High'],
+      1: ['Collectivist' ,'Individualist'],
+      2: ['Equal and Collaborative', 'Hierarchical and Authoritarian'],
+      3: ['Indirect', 'Direct'],
+      4: ['Expressive', 'Neutral']
+    }
+    const scale_mappings_he = {
+      0: ['נמוך', 'גבוה'],
+      1: ['קולקטיביזם' ,'אינדיבידואליזם'],
+      2: ['שוויונית ושיתופית', 'היררכית וסמכותית'],
+      3: ['עקיף', 'ישיר'],
+      4: ['אקספרסיבי', 'ניטרלי']
+    }
+    const scale_mappings = window.location.href.includes("/he") ? scale_mappings_he : scale_mappings_en
+
+    document.querySelectorAll("td.form-matrix-values").forEach((e) => {
+      const [a, b, row, pos] = e.childNodes[1].id.split('_')
+      if (pos != 0 && pos != 11 && pos != 12) {
+        const div = document.createElement("div");
+        div.className = "circle";
+        div.id = e.childNodes[1].id
+        e.appendChild(div);
+      } else {
+        // e.childNodes[1].remove()
+        e.childNodes[1].disabled = true;
+        if (pos != 12) {
+          const pos_a = pos == 11 ? 1 : 0
+          const div = document.createElement("div")
+          div.classList.add('scale-desc')
+          const node = document.createTextNode(scale_mappings[row][pos_a])
+          div.appendChild(node)
+          e.removeChild(e.childNodes[1])
+          e.appendChild(div)
+        } else {
+          const div = document.createElement("div")
+          div.classList.add('scale-desc')
+          div.id = `input_75_${row}_12`
+          const node = document.createTextNode(" ")
+          div.appendChild(node)
+          e.removeChild(e.childNodes[1])
+          e.appendChild(div)
+        }
+      }
+    })
+
+    const input_mapping = {
+      10: [0,'me'],
+      16: [0,'employee'],
+      19: [1,'me'],
+      20: [1,'employee'],
+      23: [2,'me'],
+      24: [2,'employee'],
+      36: [3,'me'],
+      37: [3,'employee'],
+      27: [4,'me'],
+      28: [4,'employee']
+    }
+
+    let scale_selections = {};
+
+    const queryString = window.location.search;
+    console.log(queryString);
+    const urlParams = new URLSearchParams(queryString);
+    setTimeout(() => {
+      if (urlParams.get('hcti')) {
+        const index_to_input = {10:0,16:1,19:2,20:3,23:4,24:5,36:6,37:7,27:8,28:9}
+        document.querySelectorAll("button#form-pagebreak-next_72")[0].click()
+        document.querySelectorAll("button#form-pagebreak-next_41")[0].click()
+        
+        const selections = urlParams.get('results').split(',')
+        Object.keys(input_mapping).map((key) => {
+          const index = index_to_input[key]
+          scale_selections[key] = selections[index]
+          document.querySelector(`div.circle#input_75_${input_mapping[key][0]}_${selections[index]}`).classList.add(input_mapping[key][1])
+        })
+        updateGapValues();
+      }
+    }, 100)
+    
+
+    //
+    document.querySelectorAll("input.form-radio").forEach((e) => {
+      e.onclick = (event) => {
+        const [prefix, input_type, input_value] = event.target.id.split('_')
+        document.querySelector(`div.circle#input_75_${input_mapping[input_type][0]}_${input_value}`).classList.add(input_mapping[input_type][1])
+        if (input_type in scale_selections) {
+          document.querySelector(`div.circle#input_75_${input_mapping[input_type][0]}_${scale_selections[input_type]}`).classList.remove(input_mapping[input_type][1])
+        }
+        scale_selections[input_type] = input_value
+      }
+    })
+
+    document.getElementById("form-pagebreak-next_41").addEventListener("click", (e) => {
+      updateGapValues();
+    });
+  })()
+</script>
+<style>
+  .form-matrix-column-headers {
+      padding : 0px;
+  }
+  .form-matrix-row-headers {
+      width : 10px;
+  }
+  .form-matrix-headers.form-matrix-column-headers.form-matrix-column_12 {
+    width: 60px !important;
+  }
+  .form-matrix-headers.form-matrix-column-headers.form-matrix-column_0 {
+    height: 25px;
+  }
+  td > .form-checkbox {
+    display: none;
+  }
+  td > .matrix-choice-label.matrix-checkbox-label {
+    display: none;
+  }
+  td.form-matrix-values {
+    border-left: 0;
+    width: 20px;
+  }
+  td > div.scale-desc {
+    font-size: .75em;
+    font-weight: 500;
+  }
+  td > input.form-textbox {
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+  td > input.form-textbox:hover{
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+  div.submitBrandingWrapper {
+    display: block;
+  }
+  .circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: auto;
+    border: 1px solid;
+  }
+  .me {
+    background: #004f7f;
+  }
+  .employee {
+    background: #05bbc9;
+  }
+  .red {
+    color: rgb(253, 112, 112);
+  }
+  .green {
+    color: rgb(0, 194, 0);
+  }
+  .yellow {
+    color: #c59f34;
+  }
+</style>
